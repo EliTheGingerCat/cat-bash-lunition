@@ -1,3 +1,5 @@
+-- http://lua-users.org/wiki/MetatableEvents
+
 local Vector2 = {
 	kind = "data",
 	type = "Vector2"
