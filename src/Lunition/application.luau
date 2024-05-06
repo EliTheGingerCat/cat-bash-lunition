@@ -47,24 +47,31 @@ function Application.start(self: Application, port: number): ()
 		error("Application is already running.")
 	end
 
-	self._handle = net.serve(port, function(request)
-		local success, results = pcall(self.run, self, request)
-		if success then
-			return results.response
-		else
-			-- a little bit repetitive
-			-- but I think this copy-and-paste is acceptable
-			if self.errorHandlerLuau then
-				return self.errorHandlerLuau(results :: any)
+	self._handle = net.serve(port, {
+		address = "http://0.0.0.0",
+		handleRequest = function(request)
+			local success, results = pcall(self.run, self, request)
+			if success then
+				return results.response
 			else
-				-- error can no longer be bubbled up
-				return {
-					status = 500,
-					body = "Something went wrong."
-				}
+				-- a little bit repetitive
+				-- but I think this copy-and-paste is acceptable
+				if self.errorHandlerLuau then
+					return self.errorHandlerLuau(results :: any)
+				else
+					-- error can no longer be bubbled up
+					return {
+						status = 500,
+						body = "Something went wrong."
+					}
+				end
 			end
+		end,
+		handleWebSocket = function(socket)
+			print(socket.next())
+			socket.send("Skull")
 		end
-	end)
+	})
 end
 
 --[=[

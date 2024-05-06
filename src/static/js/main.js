@@ -1,1 +1,1 @@
-console.log("among")
+console.log("JavaScript test.")

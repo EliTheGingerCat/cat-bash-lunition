@@ -7,4 +7,6 @@ lBase:route("/", "html/index.html")
 
 lBase:route("/credits", "html/credits.html")
 
+lBase:route("/websocket", "html/web-socket.html")
+
 return lBase
