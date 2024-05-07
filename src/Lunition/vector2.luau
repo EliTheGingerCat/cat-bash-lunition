@@ -60,7 +60,7 @@ for _, metamethod: operation in METAMETHODS_MATHEMATICS do
 			for _, axis in AXES do
 				vector[axis] = operate(vector[axis], object, metamethod)
 			end
-		elseif type(object) == "table" and object.name == "Vector2" then
+		elseif type(object) == "table" and object.kind == "Vector2" then
 			for _, axis in AXES do
 				vector[axis] = operate(vector[axis], object[axis], metamethod)
 			end
@@ -82,10 +82,10 @@ function Vector2.__eq(vector1: Vector2, vector2: Vector2): (boolean)
 	return true
 end
 
-function Vector2.new(x: number, y: number): (Vector2)
+function Vector2.new(x: number?, y: number?): (Vector2)
 	return setmetatable({
-		x = x,
-		y = y
+		x = x or 0,
+		y = y or 0
 	}, Vector2)
 end
 

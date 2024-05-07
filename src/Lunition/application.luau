@@ -2,6 +2,7 @@
 
 local net = require("@lune/net")
 
+local Game = require("game")
 local Lunit = require("lunit")
 
 --[=[
@@ -67,10 +68,7 @@ function Application.start(self: Application, port: number): ()
 				end
 			end
 		end,
-		handleWebSocket = function(socket)
-			print(socket.next())
-			socket.send("Skull")
-		end
+		handleWebSocket = Game
 	})
 end
 

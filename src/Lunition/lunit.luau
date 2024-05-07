@@ -84,10 +84,18 @@ local function routeStatic(pathStatic: string, pathRequest: string): (net.ServeR
         results = Render(pathStatic)
     end
 
-    -- success!
-    return {
-        body = results
-    }
+    local response = {
+        body = results,
+        headers = {}
+    } :: net.ServeResponse
+    assert(response.headers) -- goofy TC
+
+    -- content type header so Firefox stops yelling at me
+    local extension = string.match(pathStatic, ".(%a+)$")
+    local codeMime = extension and Codes.mime[extension]
+    response.headers["Content-Type"] = codeMime
+
+    return response
 end
 
 local runLunit -- routeLunit and runLunit depend on each other
