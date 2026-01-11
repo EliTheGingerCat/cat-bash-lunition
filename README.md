@@ -1,3 +1,11 @@
+### Archival
+
+Archived on 2026-01-11.
+
+This repository has been archived since it started out as Cat Bash using Python and Flaskr and I think it would be strange to replace all of it with Luau and with our Lunition technology. I do not plan on continuing Cat Bash (with Python), so the only solution is to archive. Perhaps I will use Lunition someday, but for now, I am going to keep <eli.bridgeduel.xyz> simple.
+
+See branches [`dev`](</EliTheGingerCat/cat-bash-lunition/tree/dev>) for Lunition and [`websocket`](</EliTheGingerCat/cat-bash-lunition/tree/websocket>) for my incomplete work on supporting multiplayer games using websockets.
+
 # cat-bash
 A really bad social media application that is only going to get worse.
 
